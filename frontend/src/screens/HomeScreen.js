@@ -5,6 +5,9 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import axios from 'axios'
 import Product from '../components/Product'
+import { Helmet } from 'react-helmet-async'
+import LoadingBox from '../components/LoadingBox'
+import MessageBox from '../components/MessageBox'
 
 // import data from "../data"
 
@@ -44,21 +47,26 @@ function HomeScreen() {
     }, [])
     return (
         <div>
+            <Helmet>
+                <title>Amazona</title>
+            </Helmet>
             <h1>Featured Products</h1>
             <div className="products">
                 {
                     loading ? (
-                        <div>Loading...</div>
+                        <LoadingBox />
                     ) : error ? (
-                        <div>{error}</div>
+                        <MessageBox variant="danger">{error}</MessageBox>
                     ) : (
-                        <Row>
-                            {products.map((product) => (
-                                <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
-                                    <Product product={product}></Product>
-                                </Col>
-                            ))}
-                        </Row>
+                        <>
+                            <Row>
+                                {products.map((product) => (
+                                    <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                                        <Product product={product}></Product>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </>
                     )}
             </div>
         </div>

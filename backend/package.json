@@ -5,8 +5,7 @@
   "description": "backend server for ecommerce mern application",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "author": "Delmond Bongha",
   "license": "MIT",
